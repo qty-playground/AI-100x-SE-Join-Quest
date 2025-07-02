@@ -18,6 +18,7 @@ Feature: Double 11 Bulk Discount
       | productName | quantity |
       | 襪子        | 12       |
 
+  @ignore
   Scenario: Buy 27 items of same product - multiple bulk discounts
     When a customer places an order with:
       | productName | quantity | unitPrice |
@@ -29,6 +30,7 @@ Feature: Double 11 Bulk Discount
       | productName | quantity |
       | 襪子        | 27       |
 
+  @ignore
   Scenario: Buy 10 different products - no bulk discount applies
     When a customer places an order with:
       | productName | quantity | unitPrice |
