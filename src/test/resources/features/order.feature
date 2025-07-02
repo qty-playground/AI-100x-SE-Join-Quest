@@ -4,6 +4,7 @@ Feature: E-commerce Order Pricing Promotions
   I want the system to calculate my order total with applicable promotions
   So that I can understand how much to pay and what items I will receive
 
+  @wip
   Scenario: Single product without promotions
     Given no promotions are applied
     When a customer places an order with:
