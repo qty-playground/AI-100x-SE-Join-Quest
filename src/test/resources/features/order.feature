@@ -16,7 +16,6 @@ Feature: E-commerce Order Pricing Promotions
       | productName | quantity |
       | T-shirt     | 1        |
 
-  @wip
   Scenario: Threshold discount applies when subtotal reaches 1000
     Given the threshold discount promotion is configured:
       | threshold | discount |
@@ -33,6 +32,7 @@ Feature: E-commerce Order Pricing Promotions
       | T-shirt     | 2        |
       | 褲子          | 1        |
 
+  @wip
   Scenario: Buy-one-get-one for cosmetics - multiple products
     Given the buy one get one promotion for cosmetics is active
     When a customer places an order with:

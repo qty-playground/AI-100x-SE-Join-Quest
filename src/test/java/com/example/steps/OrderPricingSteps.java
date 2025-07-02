@@ -87,4 +87,10 @@ public class OrderPricingSteps {
                 Integer.parseInt(config.get("discount"))
         ));
     }
+
+    @Given("the buy one get one promotion for cosmetics is active")
+    public void the_buy_one_get_one_promotion_for_cosmetics_is_active() {
+        orderItems = new ArrayList<>();
+        discountStrategies.add(new com.example.domain.discount.BuyOneGetOneDiscount());
+    }
 }
