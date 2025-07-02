@@ -12,9 +12,12 @@ public class Double11Discount implements DiscountStrategy {
 
     @Override
     public void applyDiscount(Order order) {
-        int totalDiscountAmount = 0;
-        
-        // Group items by product name to apply bulk discount
+        ProductSummary productSummary = groupProductsByName(order);
+        int totalDiscountAmount = calculateTotalDiscount(productSummary);
+        order.setDiscount(order.getDiscount() + totalDiscountAmount);
+    }
+
+    private ProductSummary groupProductsByName(Order order) {
         Map<String, Integer> productQuantities = new HashMap<>();
         Map<String, Integer> productUnitPrices = new HashMap<>();
         
@@ -28,21 +31,37 @@ public class Double11Discount implements DiscountStrategy {
             productUnitPrices.put(productName, unitPrice);
         }
         
-        // Calculate discount for each product
-        for (Map.Entry<String, Integer> entry : productQuantities.entrySet()) {
+        return new ProductSummary(productQuantities, productUnitPrices);
+    }
+
+    private int calculateTotalDiscount(ProductSummary productSummary) {
+        int totalDiscountAmount = 0;
+        
+        for (Map.Entry<String, Integer> entry : productSummary.quantities.entrySet()) {
             String productName = entry.getKey();
             int totalQuantity = entry.getValue();
-            int unitPrice = productUnitPrices.get(productName);
+            int unitPrice = productSummary.unitPrices.get(productName);
             
-            // Calculate how many bulk sets (sets of 10) qualify for discount
-            int bulkSets = totalQuantity / BULK_QUANTITY;
-            int discountQuantity = bulkSets * BULK_QUANTITY;
-            
-            // Calculate discount amount for this product
-            int discountAmount = (int) (discountQuantity * unitPrice * DISCOUNT_RATE);
+            int discountAmount = calculateBulkDiscount(totalQuantity, unitPrice);
             totalDiscountAmount += discountAmount;
         }
         
-        order.setDiscount(order.getDiscount() + totalDiscountAmount);
+        return totalDiscountAmount;
+    }
+
+    private int calculateBulkDiscount(int totalQuantity, int unitPrice) {
+        int bulkSets = totalQuantity / BULK_QUANTITY;
+        int discountQuantity = bulkSets * BULK_QUANTITY;
+        return (int) (discountQuantity * unitPrice * DISCOUNT_RATE);
+    }
+
+    private static class ProductSummary {
+        final Map<String, Integer> quantities;
+        final Map<String, Integer> unitPrices;
+
+        ProductSummary(Map<String, Integer> quantities, Map<String, Integer> unitPrices) {
+            this.quantities = quantities;
+            this.unitPrices = unitPrices;
+        }
     }
 }
