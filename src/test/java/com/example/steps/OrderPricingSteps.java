@@ -93,10 +93,4 @@ public class OrderPricingSteps {
         orderItems = new ArrayList<>();
         discountStrategies.add(new com.example.domain.discount.BuyOneGetOneDiscount());
     }
-
-    @Given("the Double 11 bulk discount promotion is active")
-    public void the_double_11_bulk_discount_promotion_is_active() {
-        orderItems = new ArrayList<>();
-        discountStrategies.add(new com.example.domain.discount.Double11Discount());
-    }
 }
