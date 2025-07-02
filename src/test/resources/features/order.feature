@@ -72,7 +72,6 @@ Feature: E-commerce Order Pricing Promotions
       | 襪子          | 1        |
       | 口紅          | 2        |
 
-  @wip
   Scenario: Multiple promotions stacked
     Given the threshold discount promotion is configured:
       | threshold | discount |
