@@ -7,7 +7,6 @@ Feature: Double 11 Bulk Discount
   Background:
     Given the Double 11 bulk discount promotion is active
 
-  @ignore
   Scenario: Buy 12 items of same product - partial bulk discount
     When a customer places an order with:
       | productName | quantity | unitPrice |
@@ -30,7 +29,6 @@ Feature: Double 11 Bulk Discount
       | productName | quantity |
       | 襪子        | 27       |
 
-  @ignore
   Scenario: Buy 10 different products - no bulk discount applies
     When a customer places an order with:
       | productName | quantity | unitPrice |
