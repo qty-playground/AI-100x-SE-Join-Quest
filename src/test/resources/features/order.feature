@@ -46,7 +46,6 @@ Feature: E-commerce Order Pricing Promotions
       | 口紅          | 2        |
       | 粉底液         | 2        |
 
-  @wip
   Scenario: Buy-one-get-one for cosmetics - same product twice
     Given the buy one get one promotion for cosmetics is active
     When a customer places an order with:
@@ -73,6 +72,7 @@ Feature: E-commerce Order Pricing Promotions
       | 襪子          | 1        |
       | 口紅          | 2        |
 
+  @wip
   Scenario: Multiple promotions stacked
     Given the threshold discount promotion is configured:
       | threshold | discount |
