@@ -97,7 +97,6 @@ public class OrderPricingSteps {
     @Given("the Double {int} bulk discount promotion is active")
     public void the_double_bulk_discount_promotion_is_active(Integer int1) {
         orderItems = new ArrayList<>();
-        // TODO: Add Double11Discount implementation
-        throw new io.cucumber.java.PendingException();
+        discountStrategies.add(new com.example.domain.discount.Double11Discount());
     }
 }
