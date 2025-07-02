@@ -22,4 +22,20 @@ public class Order {
     public int getTotalAmount() {
         return totalAmount;
     }
+
+    public int getOriginalAmount() {
+        return originalAmount;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public void applyDiscount() {
+        this.totalAmount = this.originalAmount - this.discount;
+    }
 }
